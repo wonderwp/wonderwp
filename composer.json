@@ -12,7 +12,9 @@
     "require": {
         "wonderwp/autoloader":"^1.0",
         "johnpbloch/wordpress": "^4.7",
-        "wonderwp/dependency-injection": "dev-develop@dev"
+        "wonderwp/dependency-injection": "dev-develop@dev",
+        "wonderwp/functions": "dev-develop@dev",
+        "wonderwp/plugin-skeleton": "dev-develop@dev"
     },
     "autoload": {
         "psr-4": {
