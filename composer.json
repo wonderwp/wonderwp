@@ -10,8 +10,7 @@
         }
     ],
     "require": {
-        "wonderwp/autoload-wwp":"dev-develop@dev",
-        "johnpbloch/wordpress": "^4.7",
+        "wonderwp/autoload-wwp":"dev-develop@dev",        
         "wonderwp/dependency-injection": "dev-develop@dev",
         "wonderwp/functions": "dev-develop@dev",
         "wonderwp/plugin-skeleton": "dev-develop@dev"
@@ -22,6 +21,7 @@
         }
     },
     "require-dev": {
-        "phpunit/phpunit": "^5.1"
+        "phpunit/phpunit": "^5.1",
+        "johnpbloch/wordpress": "^4.7"
     }
 }
