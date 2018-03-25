@@ -1,6 +1,6 @@
 <?php
 
-namespace WonderWp\Component;
+namespace WonderWp\Bundle;
 
 
 use WonderWp\Component\DependencyInjection\Container;
