@@ -10,7 +10,7 @@
         }
     ],
     "require": {
-        "wonderwp/autoloader":"^1.0",
+        "wonderwp/autoload-wwp":"dev-develop@dev",
         "johnpbloch/wordpress": "^4.7",
         "wonderwp/dependency-injection": "dev-develop@dev",
         "wonderwp/functions": "dev-develop@dev",
