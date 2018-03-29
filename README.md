@@ -21,6 +21,7 @@ This framework could interest you if
 ### Overview
 
 - Composer capabilities / Autoloading
+- Namespacing
 - Dependency injection container
 - Convert procedurals concepts into Object Oriented Interfaces, and PSRs, and implementations such as
 	- Routing
@@ -47,15 +48,13 @@ This framework could interest you if
 
 #### Composer
 
-We wanted to make sure our WonderWp based work could play well with composer. This framework is therefore on packagist here : [https://packagist.org/packages/wonderwp/framework]()
+We wanted to make sure our WonderWp based work could play well with composer. This framework is therefore on packagist here : [https://packagist.org/packages/wonderwp/wonderwp]()
 
 You can install it like this:
 
 ```
-composer require wonderwo/framework
+composer require wonderwp/wonderwp
 ```
-
-For the moment, the framework is only installable via composer but we've planned to release a plugin version as well in the future.
 
 For a composer based WordPress architecture, we recommend [https://roots.io/bedrock/](bedrock).
 
