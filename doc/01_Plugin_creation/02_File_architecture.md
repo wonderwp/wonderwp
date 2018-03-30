@@ -3,6 +3,8 @@
 This is a sample definition. Your plugin could have much less files (just the includes and admin folders for example)
 
 - admin //All related admin resources
+    - views
+        - my-plugin-view-a.php
 	- css
 		- my-plugin-admin.css
 	- js
@@ -27,4 +29,4 @@ This is a sample definition. Your plugin could have much less files (just the in
 		- my-plugin-public.js  
 	- views
 - index.php //Silence is golden
-- myplugin.php //Main plugin file
+- myplugin.php //Plugin bootstrap file

@@ -1,7 +1,7 @@
 
-# The Main Plugin File
+# The Plugin Bootstrap File
 
-Here's an example of a plugin main file that we'll comment right after:
+Here's an example of a plugin bootstrap file that we'll comment right after:
 
 ```
 /**
