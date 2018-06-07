@@ -10,10 +10,26 @@
         }
     ],
     "require": {
-        "wonderwp/autoload-wwp":"dev-develop@dev",        
-        "wonderwp/dependency-injection": "dev-develop@dev",
+        "wonderwp/autoload-wwp":"dev-develop@dev",
         "wonderwp/functions": "dev-develop@dev",
-        "wonderwp/plugin-skeleton": "dev-develop@dev"
+        "wonderwp/plugin-skeleton": "dev-develop@dev",
+        "wonderwp/api": "dev-develop@dev",
+        "wonderwp/cache": "dev-develop@dev",
+        "wonderwp/dependency-injection": "dev-develop@dev",
+        "wonderwp/generator-wwp": "dev-develop@dev",
+        "wonderwp/hook": "dev-develop@dev",
+        "wonderwp/http-foundation": "dev-develop@dev",
+        "wonderwp/filter": "dev-develop@dev",
+        "wonderwp/form": "dev-develop@dev",
+        "wonderwp/media": "dev-develop@dev",
+        "wonderwp/mailing": "dev-develop@dev",
+        "wonderwp/notification": "dev-develop@dev",
+        "wonderwp/repository": "dev-develop@dev",
+        "wonderwp/routing": "dev-develop@dev",
+        "wonderwp/search": "dev-develop@dev",
+        "wonderwp/service": "dev-develop@dev",
+        "wonderwp/shortcode": "dev-develop@dev",
+        "wonderwp/task": "dev-develop@dev"
     },
     "autoload": {
         "psr-4": {
