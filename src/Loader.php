@@ -18,6 +18,10 @@ use WonderWp\Component\Hook\HookManager;
 use WonderWp\Component\Logging\DirectOutputLogger;
 use WonderWp\Component\Mailing\WpMailer;
 use WonderWp\Component\Routing\Router\Router;
+use WonderWp\Component\Search\Engine\SearchEngine;
+use WonderWp\Component\Search\Renderer\SearchResultSetsRenderer;
+use WonderWp\Component\Search\Result\SearchResult;
+use WonderWp\Component\Search\ResultSet\SearchResultSet;
 
 class Loader implements SingletonInterface
 {
@@ -126,6 +130,20 @@ class Loader implements SingletonInterface
         $container['wwp.log.log'] = function () {
             return new DirectOutputLogger();
         };
+
+        //Search
+        $container['wwp.search.engine']   = function () {
+            return new SearchEngine();
+        };
+        $container['wwp.search.renderer'] = function () {
+            return new SearchResultSetsRenderer();
+        };
+        $container['wwp.search.result']   = $container->factory(function () {
+            return new SearchResult();
+        });
+        $container['wwp.search.set']      = $container->factory(function () {
+            return new SearchResultSet();
+        });
 
         do_action('wonderwp.loader.load');
 
