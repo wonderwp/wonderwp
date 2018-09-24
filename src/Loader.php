@@ -2,7 +2,6 @@
 
 namespace WonderWp\Bundle;
 
-
 use WonderWp\Component\Asset\Asset;
 use WonderWp\Component\Asset\AssetManager;
 use WonderWp\Component\Asset\DirectAssetEnqueuer;
@@ -16,6 +15,7 @@ use WonderWp\Component\Form\FormValidator;
 use WonderWp\Component\Form\FormView;
 use WonderWp\Component\Form\FormViewReadOnly;
 use WonderWp\Component\Hook\HookManager;
+use WonderWp\Component\Logging\DirectOutputLogger;
 use WonderWp\Component\Mailing\WpMailer;
 use WonderWp\Component\Routing\Router\Router;
 
