@@ -122,6 +122,11 @@ class Loader implements SingletonInterface
             return new FormValidator();
         });
 
+        //Logs
+        $container['wwp.log.log'] = function () {
+            return new DirectOutputLogger();
+        };
+
         do_action('wonderwp.loader.load');
 
         /**
