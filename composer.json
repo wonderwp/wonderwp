@@ -10,6 +10,7 @@
         }
     ],
     "require": {
+        "composer/installers": "^1.9",
         "wonderwp/api": "^1.0",
         "wonderwp/asset": "^1.0",
         "wonderwp/autoload-wwp": "^1.0",
