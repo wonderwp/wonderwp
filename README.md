@@ -12,7 +12,7 @@ This framework could interest you if
 
 - You are willing to adopt an industrial and modern development process.
 - You are faced with projects that are a true fit for a CMS but also include serious code challenges.
-- You have industrial development needs such as high production volumes, repeatable solutions, in house production teams. 
+- You have industrial development needs such as high production volumes, repeatable solutions, in house production teams.
 - You are looking at capitalizing on previous projects to build up reusable plugins and themes. Plugins and themes produced with wonderwp are meant to be full object, consistent, predictable, composerable, testable, and durable.
 - You are used to frameworks and less to CMSs
 
@@ -42,7 +42,7 @@ This framework could interest you if
 	- Shortcodes
 	- WP-CLI commands
 - MVC mechanic
-- Plugin blueprint (folder organisation, naming conventions, full object approach, empty function.php file) 
+- Plugin blueprint (folder organisation, naming conventions, full object approach, empty function.php file)
 
 ### In a bit more depth
 
@@ -68,7 +68,7 @@ When working with a dependency injection container, you open up the possibility 
 
 That's why in addition to add a DI container, we've also added many interfaces to work with WordPress core concepts, and wider programming concepts, (Emails, Routing, Logging, Caching)...
 
-#### Services 
+#### Services
 
 Trying to follow good object oriented principles, we encourage developers throught the use of this framework to adopt a few concepts.
 
@@ -91,7 +91,7 @@ You can find much more detailled documentation within the documentation folder.
 
 ## Tests
 
-Command to launch the tests : 
+Command to launch the tests :
 
 `vendor/bin/phpunit tests/suites --bootstrap tests/bootstrap.php  --coverage-html tests/reports/coverage.html --whitelist src/WonderWp/Framework --log-junit tests/reports/phunit.xml`
 
@@ -99,3 +99,7 @@ Command to launch the tests :
 
 - You can contribute to this project by forking this repository and proposing pull requests
 - We're looking for unit test contributors
+
+## Changelog
+
+You can find the changelog under [changelog.md](./changelog.md)
