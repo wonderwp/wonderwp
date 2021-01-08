@@ -1,5 +1,27 @@
 # Changelog
 
+##
+- wonderwp/form pushed to version 1.1.1
+    - In which the textdomain can now be set in the constructor of CategoryRadioField and CategoriesCheckBoxesField objects.
+- wonderwp/repository pushed to version 1.1.0
+    - In which a new TaxonomyRespository has been added.
+- wonderwp/media pushed to version 1.1.0
+    - In which a new mediaSrcAtSize method has been added to the Medias class.
+- wonderwp/notification pushed to version 1.0.1
+    - In which constructor parameters have been made optional.
+- wonderwp/form pushed to version 1.1.0
+    - In which a new TimeField has been created.
+- wonderwp/generator pushed to version 1.0.6
+    - In which a chown warning upon folder generation has been fixed.
+- wonderwp/asset pushed to version 1.0.4 then 1.0.4
+    - At 1.0.4 array_key_exists conditions have been replaced by property_exists conditions to fix php 7.4 deprecated warnings.
+    - At 1.0.5 the specific used protocol has been added to assets urls when encoded by the jsonAssetsEnqueur. It's not relative anymore. Also a new filter (wwp.JsonAssetsEnqueur.blogUrl) is present on this enqueur blogUrl in the cosntructor.
+- wonderwp/customposttype pushed to version 1.0.11
+    - In which the saving of a boolean field with empty value has been improved
+- wonderwp/panel pushed to version 1.0.1 then 1.1.0
+    - At 1.0.1 : two minor checks have been added in the PanelManager
+    - At 1.1.0 : The serialisation and unserialiastion of structured data to and from the database is now delegated to the panel object. It's a non breaking change allowing developers to specify their own serialisation mechanism per panel if needed. Default stays `serialize`/`unserialize`
+
 ## 1.1.0
 
 Can contain minor breaking changes due to the following :
