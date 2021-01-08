@@ -1,6 +1,6 @@
 # Changelog
 
-##
+## 1.2.0
 - wonderwp/form pushed to version 1.1.1
     - In which the textdomain can now be set in the constructor of CategoryRadioField and CategoriesCheckBoxesField objects.
 - wonderwp/repository pushed to version 1.1.0
