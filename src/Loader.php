@@ -22,6 +22,10 @@ use WonderWp\Component\Search\Engine\SearchEngine;
 use WonderWp\Component\Search\Renderer\SearchResultSetsRenderer;
 use WonderWp\Component\Search\Result\SearchResult;
 use WonderWp\Component\Search\ResultSet\SearchResultSet;
+use WonderWp\Component\Template\Views\AdminVue;
+use WonderWp\Component\Template\Views\EditAdminView;
+use WonderWp\Component\Template\Views\ListAdminView;
+use WonderWp\Component\Template\Views\OptionsAdminView;
 
 class Loader implements SingletonInterface
 {
@@ -53,6 +57,7 @@ class Loader implements SingletonInterface
         $container['path_root']                           = ABSPATH . '../../'; // root
         $container['path_framework_root']                 = __DIR__; // Framework root
         $container['wwp.path.defaultlanguagedir.plugins'] = trailingslashit(WP_LANG_DIR) . DIRECTORY_SEPARATOR . 'plugins' . DIRECTORY_SEPARATOR;
+        $container['wwp.path.templates.frags']            = $container['path_root'] . '/vendor/wonderwp/template/src/frags/';
 
         /**
          * Define Services
@@ -84,7 +89,7 @@ class Loader implements SingletonInterface
         };
         $container['wwp.asset.folder.prefix'] = './';
         $container['wwp.asset.folder.dest']   = '';
-        $container['wwp.asset.folder.path']   = str_replace(trim(get_bloginfo('url'),'/'), '', str_replace(trim(network_site_url(),'/'), '', get_stylesheet_directory_uri()));
+        $container['wwp.asset.folder.path']   = str_replace(trim(get_bloginfo('url'), '/'), '', str_replace(trim(network_site_url(), '/'), '', get_stylesheet_directory_uri()));
 
         //Emails
         $container['wwp.mailing.mailer'] = $container->factory(function () {
@@ -108,12 +113,12 @@ class Loader implements SingletonInterface
         };
 
         //Hook Manager
-        $container['wwp.hook.manager'] = function(){
+        $container['wwp.hook.manager'] = function () {
             return new HookManager();
         };
 
         //Forms
-        $container['wwp.form.form']              = $container->factory(function () {
+        $container['wwp.form.form']          = $container->factory(function () {
             return new Form();
         });
         $container['wwp.form.view']          = $container->factory(function () {
@@ -144,6 +149,20 @@ class Loader implements SingletonInterface
         $container['wwp.search.set']      = $container->factory(function () {
             return new SearchResultSet();
         });
+
+        //Views
+        $container['wwp.views.baseAdmin']    = function () {
+            return new AdminVue();
+        };
+        $container['wwp.views.listAdmin']    = function () {
+            return new ListAdminView();
+        };
+        $container['wwp.views.editAdmin']    = function () {
+            return new EditAdminView();
+        };
+        $container['wwp.views.optionsAdmin'] = function () {
+            return new OptionsAdminView();
+        };
 
         do_action('wonderwp.loader.load');
 
