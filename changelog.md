@@ -1,12 +1,13 @@
 # Changelog
 
-## 1.3.0 (wip)
+## 1.3.0
 
 - wonderwp/generator-wwp pushed to version 2.0.0
   - In which a very big refactoring has been made for a better generator overridability via ContentProviders.
   - /!\ Warning, this is probably a breaking change if you've overridden / extended the generator in the past for your own use. Otherwise it should'nt be.
-- wonderwp/plugin-skeleton pushed to version 1.2.0
-  - In which the default admin action has been improved.
+- wonderwp/plugin-skeleton pushed to version 1.2.0 then 1.2.1
+  - At 1.2.0 the default admin action has been improved.
+  - At 1.2.1 a dependcy version issue has been fixed.
 - wonderwp/template pushed to version 1.1.0
   - In which back office vues have been made more flexible, and and new template frag (t_content) is available
 - wonderwp/asset pushed to version 1.0.6
