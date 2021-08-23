@@ -1,50 +1,57 @@
 {
-    "name": "wonderwp/wonderwp",
-    "description": "WonderWP Framework",
-    "type": "library",
-    "license": "MIT",
-    "authors": [
-        {
-            "name": "Jeremy Desvaux",
-            "email": "jeremy.desvaux@wonderful.com"
-        }
-    ],
-    "require": {
-        "composer/installers": "^1.9",
-        "wonderwp/api": "^1.1",
-        "wonderwp/asset": "^1.0",
-        "wonderwp/autoload-wwp": "^1.0",
-        "wonderwp/cache": "^1.0",
-        "wonderwp/customposttype": "^1.0",
-        "wonderwp/dependency-injection": "^1.0",
-        "wonderwp/filter": "^1.0",
-        "wonderwp/form": "^1.2",
-        "wonderwp/functions": "^1.0",
-        "wonderwp/generator-wwp": "^2.0",
-        "wonderwp/hook": "^1.0",
-        "wonderwp/http": "^1.0",
-        "wonderwp/http-foundation": "^1.0",
-        "wonderwp/logging": "^1.1",
-        "wonderwp/mailing": "^1.0",
-        "wonderwp/media": "^1.1",
-        "wonderwp/notification": "^1.0",
-        "wonderwp/panel": "^1.1",
-        "wonderwp/plugin-skeleton": "^1.2",
-        "wonderwp/repository": "^1.2",
-        "wonderwp/routing": "^1.0",
-        "wonderwp/search": "^1.1",
-        "wonderwp/service": "^1.0",
-        "wonderwp/shortcode": "^1.0",
-        "wonderwp/task": "^1.0",
-        "wonderwp/template": "^1.1"
+  "name": "wonderwp/wonderwp",
+  "description": "WonderWP Framework. A framework bringing modern and industrial development capabilities to WordPress",
+  "type": "library",
+  "keywords": ["WonderWp","WordPress","Framework"],
+  "homepage": "http://wonderwp.net",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Jeremy Desvaux",
+      "homepage": "https://jdmweb.com"
     },
-    "autoload": {
-        "psr-4": {
-            "WonderWp\\Bundle\\": "src"
-        }
-    },
-    "require-dev": {
-        "phpunit/phpunit": "^5.1",
-        "johnpbloch/wordpress": "^4.7"
+    {
+      "name": "WonderWp Community",
+      "homepage": "http://wonderwp.net/Contribution/Contributors.html"
     }
+  ],
+  "require": {
+    "php": ">=7.1",
+    "composer/installers": "^1.9",
+    "wonderwp/api": "^1.2",
+    "wonderwp/asset": "^1.1",
+    "wonderwp/autoload-wwp": "^1.3",
+    "wonderwp/cache": "^1.1",
+    "wonderwp/customposttype": "^1.1",
+    "wonderwp/dependency-injection": "^1.1",
+    "wonderwp/filter": "^1.1",
+    "wonderwp/form": "^1.3",
+    "wonderwp/functions": "^1.1",
+    "wonderwp/generator-wwp": "^2.2",
+    "wonderwp/hook": "^1.1",
+    "wonderwp/http": "^1.1",
+    "wonderwp/http-foundation": "^1.1",
+    "wonderwp/logging": "^1.2",
+    "wonderwp/mailing": "^1.2",
+    "wonderwp/media": "^1.2",
+    "wonderwp/notification": "^1.1",
+    "wonderwp/panel": "^1.2",
+    "wonderwp/plugin-skeleton": "^1.3",
+    "wonderwp/repository": "^1.3",
+    "wonderwp/routing": "^1.1",
+    "wonderwp/search": "^1.2",
+    "wonderwp/service": "^1.1",
+    "wonderwp/shortcode": "^1.1",
+    "wonderwp/task": "^1.1",
+    "wonderwp/template": "^1.2"
+  },
+  "autoload": {
+    "psr-4": {
+      "WonderWp\\Bundle\\": "src"
+    }
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^5.1",
+    "johnpbloch/wordpress": "^4.7"
+  }
 }
