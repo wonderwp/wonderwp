@@ -84,9 +84,7 @@ class Loader implements SingletonInterface
         $container['wwp.asset.exporterClass'] = JsonAssetExporter::class;
         $container['wwp.asset.assetClass']    = Asset::class;
         $container['wwp.asset.manifest.path'] = $container['path_root'] . '/assets.json';
-        $container['wwp.asset.enqueuer']      = function ($container) {
-            return new DirectAssetEnqueuer();
-        };
+
         $container['wwp.asset.folder.prefix'] = './';
         $container['wwp.asset.folder.dest']   = '';
         $container['wwp.asset.folder.path']   = str_replace(trim(get_bloginfo('url'), '/'), '', str_replace(trim(network_site_url(), '/'), '', get_stylesheet_directory_uri()));
@@ -110,6 +108,11 @@ class Loader implements SingletonInterface
             }
 
             return $wp_filesystem;
+        };
+
+        $container['wwp.asset.enqueuer']      = function ($container) {
+            $publicPath = ROOT_DIR . str_replace('.', '', $container['wwp.asset.folder.prefix']);
+            return new DirectAssetEnqueuer($container['wwp.asset.manager'], $container['wwp.fileSystem'], $publicPath);
         };
 
         //Hook Manager
