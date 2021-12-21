@@ -124,14 +124,16 @@ class Loader implements SingletonInterface
         $container['wwp.form.form']          = $container->factory(function () {
             return new Form();
         });
-        $container['wwp.form.view']          = $container->factory(function () {
-            return new FormView();
-        });
         $container['wwp.form.view.readOnly'] = $container->factory(function () {
             return new FormViewReadOnly();
         });
         $container['wwp.form.validator']     = $container->factory(function () {
             return new FormValidator();
+        });
+        $container['wwp.form.view']          = $container->factory(function () use ($container) {
+            return new FormView(
+                $container['wwp.form.validator']
+            );
         });
 
         //Logs
