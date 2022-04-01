@@ -17,6 +17,8 @@ use WonderWp\Component\Form\FormViewReadOnly;
 use WonderWp\Component\Hook\HookManager;
 use WonderWp\Component\Logging\DirectOutputLogger;
 use WonderWp\Component\Mailing\WpMailer;
+use WonderWp\Component\Panel\Panel;
+use WonderWp\Component\Panel\PanelManager;
 use WonderWp\Component\Routing\Router\Router;
 use WonderWp\Component\Search\Engine\SearchEngine;
 use WonderWp\Component\Search\Renderer\SearchResultSetsRenderer;
@@ -140,6 +142,14 @@ class Loader implements SingletonInterface
         $container['wwp.log.log'] = function () {
             return new DirectOutputLogger();
         };
+
+        //Panels
+        $container['wwp.panel.Manager'] = function () {
+            return new PanelManager();
+        };
+        $container['wwp.panel.Panel']   = $container->factory(function () {
+            return new Panel();
+        });
 
         //Search
         $container['wwp.search.engine']   = function () {
