@@ -17,6 +17,8 @@ use WonderWp\Component\Form\FormViewReadOnly;
 use WonderWp\Component\Hook\HookManager;
 use WonderWp\Component\Logging\DirectOutputLogger;
 use WonderWp\Component\Mailing\WpMailer;
+use WonderWp\Component\Panel\Panel;
+use WonderWp\Component\Panel\PanelManager;
 use WonderWp\Component\Routing\Router\Router;
 use WonderWp\Component\Search\Engine\SearchEngine;
 use WonderWp\Component\Search\Renderer\SearchResultSetsRenderer;
@@ -84,9 +86,7 @@ class Loader implements SingletonInterface
         $container['wwp.asset.exporterClass'] = JsonAssetExporter::class;
         $container['wwp.asset.assetClass']    = Asset::class;
         $container['wwp.asset.manifest.path'] = $container['path_root'] . '/assets.json';
-        $container['wwp.asset.enqueuer']      = function ($container) {
-            return new DirectAssetEnqueuer();
-        };
+
         $container['wwp.asset.folder.prefix'] = './';
         $container['wwp.asset.folder.dest']   = '';
         $container['wwp.asset.folder.path']   = str_replace(trim(get_bloginfo('url'), '/'), '', str_replace(trim(network_site_url(), '/'), '', get_stylesheet_directory_uri()));
@@ -112,6 +112,11 @@ class Loader implements SingletonInterface
             return $wp_filesystem;
         };
 
+        $container['wwp.asset.enqueuer']      = function ($container) {
+            $publicPath = ROOT_DIR . str_replace('.', '', $container['wwp.asset.folder.prefix']);
+            return new DirectAssetEnqueuer($container['wwp.asset.manager'], $container['wwp.fileSystem'], $publicPath);
+        };
+
         //Hook Manager
         $container['wwp.hook.manager'] = function () {
             return new HookManager();
@@ -121,20 +126,30 @@ class Loader implements SingletonInterface
         $container['wwp.form.form']          = $container->factory(function () {
             return new Form();
         });
-        $container['wwp.form.view']          = $container->factory(function () {
-            return new FormView();
-        });
         $container['wwp.form.view.readOnly'] = $container->factory(function () {
             return new FormViewReadOnly();
         });
         $container['wwp.form.validator']     = $container->factory(function () {
             return new FormValidator();
         });
+        $container['wwp.form.view']          = $container->factory(function () use ($container) {
+            return new FormView(
+                $container['wwp.form.validator']
+            );
+        });
 
         //Logs
         $container['wwp.log.log'] = function () {
             return new DirectOutputLogger();
         };
+
+        //Panels
+        $container['wwp.panel.Manager'] = function () {
+            return new PanelManager();
+        };
+        $container['wwp.panel.Panel']   = $container->factory(function () {
+            return new Panel();
+        });
 
         //Search
         $container['wwp.search.engine']   = function () {
