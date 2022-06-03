@@ -17,7 +17,6 @@
   ],
   "require": {
     "php": ">=7.1",
-    "composer/installers": "^1.9",
     "wonderwp/api": "^1.2",
     "wonderwp/asset": "^2.0",
     "wonderwp/autoload-wwp": "^1.3",
