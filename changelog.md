@@ -20,7 +20,7 @@
   - At 1.5.2 : The validator object validates fields that are stored in field groups too, not just flat stored fields.
   - At 1.5.3 : Better json serialization of an AbstractField validation rules. It used to be empty arrays, no we can see the rule class name for reference.
 - **wonderwp/asset** pushed to version 2.0.0. **/!\ Warning** : This is a new major version, which includes breaking changes (see migration path below).
-- **wonderwp/plugin-skeleton** pushed to version 1.4.0 then 1.4.1, then 1.4.2
+- **wonderwp/plugin-skeleton** pushed to version 1.4.0 then 1.4.1, then 1.4.2, then 1.4.3.
   - At 1.4.0, the reference to wonderwp/asset has been updated to ^2.0.
   - At 1.4.1, you now have the possibility to manipulate FrontendController's handleShortCode computed action name with a filter.
   - At 1.4.2, an unresolved dependency has been fixed in the `AbstractPluginFrontendController::renderPage` method
