@@ -25,5 +25,10 @@ include $wordpress_dir.'/wp-includes/formatting.php';
 include $wordpress_dir.'/wp-includes/class-wp-rewrite.php';
 include $wordpress_dir.'/wp-includes/rewrite.php';
 include $wordpress_dir.'/wp-includes/class-wp.php';
+include $wordpress_dir.'/wp-includes/kses.php';
+
+add_filter('pre_option_blog_charset', function(){
+    return 'UTF-8';
+});
 
 $loader = \WonderWp\Bundle\Loader::getInstance();

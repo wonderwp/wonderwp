@@ -16,10 +16,12 @@ use WonderWp\Component\Form\FormView;
 use WonderWp\Component\Form\FormViewReadOnly;
 use WonderWp\Component\Hook\HookManager;
 use WonderWp\Component\Logging\DirectOutputLogger;
+use WonderWp\Component\Mailing\Gateways\FakeMailer;
 use WonderWp\Component\Mailing\WpMailer;
 use WonderWp\Component\Panel\Panel;
 use WonderWp\Component\Panel\PanelManager;
 use WonderWp\Component\Routing\Router\Router;
+use WonderWp\Component\Sanitizer\Sanitizer;
 use WonderWp\Component\Search\Engine\SearchEngine;
 use WonderWp\Component\Search\Renderer\SearchResultSetsRenderer;
 use WonderWp\Component\Search\Result\SearchResult;
@@ -91,6 +93,11 @@ class Loader implements SingletonInterface
         $container['wwp.asset.folder.dest']   = '';
         $container['wwp.asset.folder.path']   = str_replace(trim(get_bloginfo('url'), '/'), '', str_replace(trim(network_site_url(), '/'), '', get_stylesheet_directory_uri()));
 
+        $container['wwp.asset.enqueuer']      = function ($container) {
+            $publicPath = ROOT_DIR . str_replace('.', '', $container['wwp.asset.folder.prefix']);
+            return new DirectAssetEnqueuer($container['wwp.asset.manager'], $container['wwp.fileSystem'], $publicPath);
+        };
+
         //Emails
         $container['wwp.mailing.mailer'] = $container->factory(function () {
             return new WpMailer();
@@ -110,11 +117,6 @@ class Loader implements SingletonInterface
             }
 
             return $wp_filesystem;
-        };
-
-        $container['wwp.asset.enqueuer']      = function ($container) {
-            $publicPath = ROOT_DIR . str_replace('.', '', $container['wwp.asset.folder.prefix']);
-            return new DirectAssetEnqueuer($container['wwp.asset.manager'], $container['wwp.fileSystem'], $publicPath);
         };
 
         //Hook Manager
@@ -137,6 +139,11 @@ class Loader implements SingletonInterface
                 $container['wwp.form.validator']
             );
         });
+
+        //Sanitizer
+        $container['wwp.sanitizer'] = function () {
+            return Sanitizer::getInstance();
+        };
 
         //Logs
         $container['wwp.log.log'] = function () {
