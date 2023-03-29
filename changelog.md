@@ -1,13 +1,28 @@
 # Changelog
 
+## 1.6.0
+
+- **wonderwp/sanitizer** pushed to version 1.0.0
+  - This is a new framework component allowing you to sanitize your data.
+- **wonderwp/form** pushed to version 1.5.4, then 1.5.5
+  - At 1.5.4, the ability to fill forms that have nested groups has been fixed. Before it only worked at the upper level. It now has recursion to fill fields deeper.
+  - At 1.5.5, in the form view, the regex use has been fixed. The regex is now trimmed on the \ char and passed into htmlentities to prevent bad use of the " char. Plus the view now adds the minlength attribute on the input if there's a min length validation rule set on the field.
+- **wonderwp/media** pushed to version 1.3.0
+  - In which the `getIdFromUrl` method is now able to find attachement ids from scaled down image urls.
+- **wonderwp/search** pushed to version 1.3.0
+  - In which the overridability of the `SearchResultSetsRenderer` has been improved, giving better flexibility to developers who want to customize the search sets rendering.
+- **wonderwp/customposttype** pushed to version 1.4.0
+  - In which you can now filter the sitemap repository method name to choose your own.
+
 ## 1.5.0
 
 - **wonderwp/generator-wwp** pushed to version 2.3.0
   - In which we improved the way error results are being presented when errors occur while using the generator. The --debug=generator flag can be used with the command to get more information about the exception that stopped the generator.
 - **wonderwp/logging** pushed to version 1.2.1
   - In which, you can now pilot the `WP_CLI` logger `error` method `exit` flag, as well as pilot the `debug` method `group` flag via their respective `$context` parameter.
-- **wonderwp/customposttype** pushed to version 1.2.0
-  - In which you can now define multiple rewrite slugs when registering a Custom Post Type (for multi lingual purposes for example).
+- **wonderwp/customposttype** pushed to version 1.2.0, then 1.3.0
+  - At 1.2.0, you can now define multiple rewrite slugs when registering a Custom Post Type (for multi lingual purposes for example).
+  - At 1.3.0, you can now define custom fields as callables for more advanced fields. (You can still use the previous array definition declaration).
 - **wonderwp/mailing** pushed to version 1.3.0.
   - In which send results have been reworked. The `Mailerinterface::send`  method must now return en `EmailResult` object, which is more advanced than a simple `Result` object like it was before.
   - **/!\ Warning** : This can be a breaking change if you've coded custom implementations of those interfaces.
@@ -24,6 +39,7 @@
   - At 1.4.0, the reference to wonderwp/asset has been updated to ^2.0.
   - At 1.4.1, you now have the possibility to manipulate FrontendController's handleShortCode computed action name with a filter.
   - At 1.4.2, an unresolved dependency has been fixed in the `AbstractPluginFrontendController::renderPage` method
+  - At 1.4.3, you can pass a template name to this `renderPage` method. It will store it on the object, and you can retrieve it later for your own templating use.
 
 
 ### Migration path
