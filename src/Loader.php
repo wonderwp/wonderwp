@@ -15,6 +15,7 @@ use WonderWp\Component\Form\FormValidator;
 use WonderWp\Component\Form\FormView;
 use WonderWp\Component\Form\FormViewReadOnly;
 use WonderWp\Component\Hook\HookManager;
+use WonderWp\Component\Http\WpRequester;
 use WonderWp\Component\Logging\DirectOutputLogger;
 use WonderWp\Component\Mailing\Gateways\FakeMailer;
 use WonderWp\Component\Mailing\WpMailer;
@@ -143,6 +144,11 @@ class Loader implements SingletonInterface
         //Sanitizer
         $container['wwp.sanitizer'] = function () {
             return Sanitizer::getInstance();
+        };
+
+        //Http Requester
+        $container['wwp.http.requester'] = function () {
+            return new WpRequester();
         };
 
         //Logs

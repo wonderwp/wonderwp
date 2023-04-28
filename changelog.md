@@ -2,8 +2,10 @@
 
 ## 1.6.0
 
+- **wonderwp**
+  - Ability to load the http requester from the container under the `wwp.http.requester` key.
 - **wonderwp/sanitizer** pushed to version 1.0.0
-  - This is a new framework component allowing you to sanitize your data.
+  - This is a new framework component allowing you to sanitize your data. Can be accessed via the `wwp.sanitizer` key in the container.
 - **wonderwp/form** pushed to version 1.5.4, then 1.5.5
   - At 1.5.4, the ability to fill forms that have nested groups has been fixed. Before it only worked at the upper level. It now has recursion to fill fields deeper.
   - At 1.5.5, in the form view, the regex use has been fixed. The regex is now trimmed on the \ char and passed into htmlentities to prevent bad use of the " char. Plus the view now adds the minlength attribute on the input if there's a min length validation rule set on the field.
