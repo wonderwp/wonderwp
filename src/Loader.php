@@ -2,6 +2,7 @@
 
 namespace WonderWp\Bundle;
 
+use Respect\Validation\Factory;
 use WonderWp\Component\Asset\Asset;
 use WonderWp\Component\Asset\AssetManager;
 use WonderWp\Component\Asset\DirectAssetEnqueuer;
@@ -140,6 +141,12 @@ class Loader implements SingletonInterface
                 $container['wwp.form.validator']
             );
         });
+        // Override the default factory with custom rule namespace
+        Factory::setDefaultInstance(
+            Factory::getDefaultInstance()
+                ->withRuleNamespace('WonderWp\\Component\\Form\\Validation\\Rules')
+                ->withExceptionNamespace('WonderWp\\Component\\Form\\Validation\\Exceptions')
+        );
 
         //Sanitizer
         $container['wwp.sanitizer'] = function () {
