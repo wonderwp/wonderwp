@@ -142,11 +142,13 @@ class Loader implements SingletonInterface
             );
         });
         // Override the default factory with custom rule namespace
-        Factory::setDefaultInstance(
-            Factory::getDefaultInstance()
-                ->withRuleNamespace('WonderWp\\Component\\Form\\Validation\\Rules')
-                ->withExceptionNamespace('WonderWp\\Component\\Form\\Validation\\Exceptions')
-        );
+        if(method_exists(Factory::class, 'getDefaultInstance')) {
+            Factory::setDefaultInstance(
+                Factory::getDefaultInstance()
+                    ->withRuleNamespace('WonderWp\\Component\\Form\\Validation\\Rules')
+                    ->withExceptionNamespace('WonderWp\\Component\\Form\\Validation\\Exceptions')
+            );
+        }
 
         //Sanitizer
         $container['wwp.sanitizer'] = function () {
