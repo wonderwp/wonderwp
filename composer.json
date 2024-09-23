@@ -24,7 +24,7 @@
     "wonderwp/customposttype": "^1.3",
     "wonderwp/dependency-injection": "^1.1",
     "wonderwp/filter": "^1.1",
-    "wonderwp/form": "^1.5",
+    "wonderwp/form": "dev-feature/increase_validation_lib_version",
     "wonderwp/functions": "^1.1",
     "wonderwp/generator-wwp": "^2.3",
     "wonderwp/hook": "^1.1",
