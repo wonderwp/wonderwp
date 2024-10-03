@@ -16,6 +16,7 @@ use WonderWp\Component\Form\FormValidator;
 use WonderWp\Component\Form\FormView;
 use WonderWp\Component\Form\FormViewReadOnly;
 use WonderWp\Component\Hook\HookManager;
+use WonderWp\Component\Hook\HookService;
 use WonderWp\Component\Http\WpRequester;
 use WonderWp\Component\Logging\DirectOutputLogger;
 use WonderWp\Component\Mailing\Gateways\FakeMailer;
@@ -121,10 +122,15 @@ class Loader implements SingletonInterface
             return $wp_filesystem;
         };
 
-        //Hook Manager
+        /**
+         * Hooks
+         */
         $container['wwp.hook.manager'] = function () {
             return new HookManager();
         };
+        $container['wwp.hook.defaultservice'] = $container->factory(function () {
+            return new HookService();
+        });
 
         //Forms
         $container['wwp.form.form']          = $container->factory(function () {
