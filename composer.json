@@ -52,6 +52,6 @@
   },
   "require-dev": {
     "phpunit/phpunit": "^5.1",
-    "johnpbloch/wordpress": "^4.7"
+    "johnpbloch/wordpress": "^6.0"
   }
 }
