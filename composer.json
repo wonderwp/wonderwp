@@ -22,7 +22,7 @@
     "wonderwp/autoload-wwp": "dev-feature/php_8",
     "wonderwp/cache": "dev-feature/php_8",
     "wonderwp/customposttype": "dev-feature/php_8",
-    "wonderwp/custom-fields": "dev-feature/php_8",
+    "wonderwp/custom-fields": "dev-feature/php8",
     "wonderwp/dependency-injection": "dev-feature/php_8",
     "wonderwp/filter": "dev-feature/php_8",
     "wonderwp/form": "dev-feature/increase_validation_lib_version",
