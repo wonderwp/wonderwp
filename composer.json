@@ -38,14 +38,14 @@
     "wonderwp/panel": "dev-feature/php_8",
     "wonderwp/plugin-skeleton": "dev-feature/php_8",
     "wonderwp/repository": "dev-feature/php_8",
-    "wonderwp/response": "dev-feature/php_8",
+    "wonderwp/response": "dev-feature/php8",
     "wonderwp/routing": "dev-feature/php_8",
     "wonderwp/sanitizer": "dev-feature/php_8",
     "wonderwp/search": "dev-feature/php_8",
     "wonderwp/service": "dev-feature/php_8",
     "wonderwp/shortcode": "dev-feature/php_8",
     "wonderwp/task": "dev-feature/php_8",
-    "wonderwp/taxonomy": "dev-feature/php_8",
+    "wonderwp/taxonomy": "dev-feature/php8",
     "wonderwp/template": "dev-feature/php_8"
   },
   "autoload": {
