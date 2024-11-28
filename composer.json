@@ -22,6 +22,7 @@
     "wonderwp/autoload-wwp": "dev-feature/php_8",
     "wonderwp/cache": "dev-feature/php_8",
     "wonderwp/customposttype": "dev-feature/php_8",
+    "wonderwp/custom-fields": "dev-feature/php_8",
     "wonderwp/dependency-injection": "dev-feature/php_8",
     "wonderwp/filter": "dev-feature/php_8",
     "wonderwp/form": "dev-feature/increase_validation_lib_version",
@@ -37,12 +38,14 @@
     "wonderwp/panel": "dev-feature/php_8",
     "wonderwp/plugin-skeleton": "dev-feature/php_8",
     "wonderwp/repository": "dev-feature/php_8",
+    "wonderwp/response": "dev-feature/php_8",
     "wonderwp/routing": "dev-feature/php_8",
     "wonderwp/sanitizer": "dev-feature/php_8",
     "wonderwp/search": "dev-feature/php_8",
     "wonderwp/service": "dev-feature/php_8",
     "wonderwp/shortcode": "dev-feature/php_8",
     "wonderwp/task": "dev-feature/php_8",
+    "wonderwp/taxonomy": "dev-feature/php_8",
     "wonderwp/template": "dev-feature/php_8"
   },
   "autoload": {

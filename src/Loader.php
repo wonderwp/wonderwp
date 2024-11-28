@@ -8,6 +8,8 @@ use WonderWp\Component\Asset\AssetManager;
 use WonderWp\Component\Asset\DirectAssetEnqueuer;
 use WonderWp\Component\Asset\JsonAssetExporter;
 use WonderWp\Component\Cache\TransientCache;
+use WonderWp\Component\CPT\Service\CustomPostTypeService;
+use WonderWp\Component\CustomFields\Service\CustomFieldsRegistryService;
 use WonderWp\Component\DependencyInjection\Container;
 use WonderWp\Component\DependencyInjection\SingletonInterface;
 use WonderWp\Component\DependencyInjection\SingletonTrait;
@@ -21,14 +23,17 @@ use WonderWp\Component\Http\WpRequester;
 use WonderWp\Component\Logging\DirectOutputLogger;
 use WonderWp\Component\Mailing\Gateways\FakeMailer;
 use WonderWp\Component\Mailing\WpMailer;
+use WonderWp\Component\Panel\Metabox\Metabox;
 use WonderWp\Component\Panel\Panel;
 use WonderWp\Component\Panel\PanelManager;
+use WonderWp\Component\Panel\PostFieldPanel\PostFieldPanel;
 use WonderWp\Component\Routing\Router\Router;
 use WonderWp\Component\Sanitizer\Sanitizer;
 use WonderWp\Component\Search\Engine\SearchEngine;
 use WonderWp\Component\Search\Renderer\SearchResultSetsRenderer;
 use WonderWp\Component\Search\Result\SearchResult;
 use WonderWp\Component\Search\ResultSet\SearchResultSet;
+use WonderWp\Component\Taxonomy\Service\TaxonomyService;
 use WonderWp\Component\Template\Views\AdminVue;
 use WonderWp\Component\Template\Views\EditAdminView;
 use WonderWp\Component\Template\Views\ListAdminView;
@@ -128,11 +133,34 @@ class Loader implements SingletonInterface
         $container['wwp.hook.manager'] = function () {
             return new HookManager();
         };
-        $container['wwp.hook.defaultservice'] = $container->factory(function () {
+        $container['wwp.hook.defaultService'] = $container->factory(function () {
             return new HookService();
         });
 
-        //Forms
+        /**
+         * Custom Post Types
+         */
+        $container['wwp.cpt.defaultService'] = $container->factory(function () {
+            return new CustomPostTypeService();
+        });
+
+        /**
+         * Taxonomies
+         */
+        $container['wwp.taxonomy.defaultService'] = $container->factory(function () {
+            return new TaxonomyService();
+        });
+
+        /**
+         * Custom Fields
+         */
+        $container['wwp.customfields.defaultService'] = $container->factory(function () {
+            return new CustomFieldsRegistryService();
+        });
+
+        /**
+         * Forms
+         */
         $container['wwp.form.form']          = $container->factory(function () {
             return new Form();
         });
@@ -171,12 +199,17 @@ class Loader implements SingletonInterface
             return new DirectOutputLogger();
         };
 
-        //Panels
+        /**
+         * Panels and MetaBoxes
+         */
         $container['wwp.panel.Manager'] = function () {
             return new PanelManager();
         };
         $container['wwp.panel.Panel']   = $container->factory(function () {
-            return new Panel();
+            return new PostFieldPanel();
+        });
+        $container['wwp.panel.metabox'] = $container->factory(function () {
+            return new Metabox();
         });
 
         //Search
