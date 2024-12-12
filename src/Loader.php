@@ -7,6 +7,7 @@ use WonderWp\Component\Asset\Asset;
 use WonderWp\Component\Asset\AssetManager;
 use WonderWp\Component\Asset\DirectAssetEnqueuer;
 use WonderWp\Component\Asset\JsonAssetExporter;
+use WonderWp\Component\BlockType\Service\BlockTypeService;
 use WonderWp\Component\Cache\TransientCache;
 use WonderWp\Component\CPT\Service\CustomPostTypeService;
 use WonderWp\Component\CustomFields\Service\CustomFieldsRegistryService;
@@ -149,6 +150,13 @@ class Loader implements SingletonInterface
          */
         $container['wwp.taxonomy.defaultService'] = $container->factory(function () {
             return new TaxonomyService();
+        });
+
+        /**
+         * Block Types
+         */
+        $container['wwp.blockType.defaultService'] = $container->factory(function () {
+            return new BlockTypeService();
         });
 
         /**
