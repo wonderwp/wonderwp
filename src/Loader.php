@@ -18,6 +18,7 @@ use WonderWp\Component\Form\Form;
 use WonderWp\Component\Form\FormValidator;
 use WonderWp\Component\Form\FormView;
 use WonderWp\Component\Form\FormViewReadOnly;
+use WonderWp\Component\Form\FormViewWpOptions;
 use WonderWp\Component\Hook\HookManager;
 use WonderWp\Component\Hook\HookService;
 use WonderWp\Component\Http\WpRequester;
@@ -90,7 +91,10 @@ class Loader implements SingletonInterface
         $container['wwp.routes.router'] = function () {
             return new Router();
         };
-        //Assets
+
+        /**
+         * Assets
+         */
         $container['wwp.asset.manager']       = function () {
             return AssetManager::getInstance();
         };
@@ -174,6 +178,9 @@ class Loader implements SingletonInterface
         });
         $container['wwp.form.view.readOnly'] = $container->factory(function () {
             return new FormViewReadOnly();
+        });
+        $container['wwp.form.view.wpOptions'] = $container->factory(function () use ($container){
+            return new FormViewWpOptions($container['wwp.form.validator']);
         });
         $container['wwp.form.validator']     = $container->factory(function () {
             return new FormValidator();
