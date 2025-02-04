@@ -2,44 +2,9 @@
 
 namespace WonderWp\Bundle;
 
-use Respect\Validation\Factory;
-use WonderWp\Component\Asset\Asset;
-use WonderWp\Component\Asset\AssetManager;
-use WonderWp\Component\Asset\DirectAssetEnqueuer;
-use WonderWp\Component\Asset\JsonAssetExporter;
-use WonderWp\Component\BlockType\Service\BlockTypeService;
-use WonderWp\Component\Cache\TransientCache;
-use WonderWp\Component\CPT\Service\CustomPostTypeService;
-use WonderWp\Component\CustomFields\Service\CustomFieldsRegistryService;
 use WonderWp\Component\DependencyInjection\Container;
 use WonderWp\Component\DependencyInjection\SingletonInterface;
 use WonderWp\Component\DependencyInjection\SingletonTrait;
-use WonderWp\Component\Form\Form;
-use WonderWp\Component\Form\FormValidator;
-use WonderWp\Component\Form\FormView;
-use WonderWp\Component\Form\FormViewReadOnly;
-use WonderWp\Component\Form\FormViewWpOptions;
-use WonderWp\Component\Hook\HookManager;
-use WonderWp\Component\Hook\HookService;
-use WonderWp\Component\Http\WpRequester;
-use WonderWp\Component\Logging\DirectOutputLogger;
-use WonderWp\Component\Mailing\Gateways\FakeMailer;
-use WonderWp\Component\Mailing\WpMailer;
-use WonderWp\Component\Panel\Metabox\Metabox;
-use WonderWp\Component\Panel\Panel;
-use WonderWp\Component\Panel\PanelManager;
-use WonderWp\Component\Panel\PostFieldPanel\PostFieldPanel;
-use WonderWp\Component\Routing\Router\Router;
-use WonderWp\Component\Sanitizer\Sanitizer;
-use WonderWp\Component\Search\Engine\SearchEngine;
-use WonderWp\Component\Search\Renderer\SearchResultSetsRenderer;
-use WonderWp\Component\Search\Result\SearchResult;
-use WonderWp\Component\Search\ResultSet\SearchResultSet;
-use WonderWp\Component\Taxonomy\Service\TaxonomyService;
-use WonderWp\Component\Template\Views\AdminVue;
-use WonderWp\Component\Template\Views\EditAdminView;
-use WonderWp\Component\Template\Views\ListAdminView;
-use WonderWp\Component\Template\Views\OptionsAdminView;
 
 class Loader implements SingletonInterface
 {
@@ -87,40 +52,6 @@ class Loader implements SingletonInterface
             return require($container['path_root'] . 'vendor/autoload.php');
         };
 
-        //Routes
-        $container['wwp.routes.router'] = function () {
-            return new Router();
-        };
-
-        /**
-         * Assets
-         */
-        $container['wwp.asset.manager']       = function () {
-            return AssetManager::getInstance();
-        };
-        $container['wwp.asset.exporterClass'] = JsonAssetExporter::class;
-        $container['wwp.asset.assetClass']    = Asset::class;
-        $container['wwp.asset.manifest.path'] = $container['path_root'] . '/assets.json';
-
-        $container['wwp.asset.folder.prefix'] = './';
-        $container['wwp.asset.folder.dest']   = '';
-        $container['wwp.asset.folder.path']   = str_replace(trim(get_bloginfo('url'), '/'), '', str_replace(trim(network_site_url(), '/'), '', get_stylesheet_directory_uri()));
-
-        $container['wwp.asset.enqueuer']      = function ($container) {
-            $publicPath = ROOT_DIR . str_replace('.', '', $container['wwp.asset.folder.prefix']);
-            return new DirectAssetEnqueuer($container['wwp.asset.manager'], $container['wwp.fileSystem'], $publicPath);
-        };
-
-        //Emails
-        $container['wwp.mailing.mailer'] = $container->factory(function () {
-            return new WpMailer();
-        });
-
-        //Cache
-        $container['wwp.cache.cache'] = function () {
-            return new TransientCache();
-        };
-
         //FileSystem
         $container['wwp.fileSystem'] = function () {
             global $wp_filesystem;
@@ -132,130 +63,7 @@ class Loader implements SingletonInterface
             return $wp_filesystem;
         };
 
-        /**
-         * Hooks
-         */
-        $container['wwp.hook.manager'] = function () {
-            return new HookManager();
-        };
-        $container['wwp.hook.defaultService'] = $container->factory(function () {
-            return new HookService();
-        });
-
-        /**
-         * Custom Post Types
-         */
-        $container['wwp.cpt.defaultService'] = $container->factory(function () {
-            return new CustomPostTypeService();
-        });
-
-        /**
-         * Taxonomies
-         */
-        $container['wwp.taxonomy.defaultService'] = $container->factory(function () {
-            return new TaxonomyService();
-        });
-
-        /**
-         * Block Types
-         */
-        $container['wwp.blockType.defaultService'] = $container->factory(function () {
-            return new BlockTypeService();
-        });
-
-        /**
-         * Custom Fields
-         */
-        $container['wwp.customfields.defaultService'] = $container->factory(function () {
-            return new CustomFieldsRegistryService();
-        });
-
-        /**
-         * Forms
-         */
-        $container['wwp.form.form']          = $container->factory(function () {
-            return new Form();
-        });
-        $container['wwp.form.view.readOnly'] = $container->factory(function () {
-            return new FormViewReadOnly();
-        });
-        $container['wwp.form.view.wpOptions'] = $container->factory(function () use ($container){
-            return new FormViewWpOptions($container['wwp.form.validator']);
-        });
-        $container['wwp.form.validator']     = $container->factory(function () {
-            return new FormValidator();
-        });
-        $container['wwp.form.view']          = $container->factory(function () use ($container) {
-            return new FormView(
-                $container['wwp.form.validator']
-            );
-        });
-        // Override the default factory with custom rule namespace
-        if(method_exists(Factory::class, 'getDefaultInstance')) {
-            Factory::setDefaultInstance(
-                Factory::getDefaultInstance()
-                    ->withRuleNamespace('WonderWp\\Component\\Form\\Validation\\Rules')
-                    ->withExceptionNamespace('WonderWp\\Component\\Form\\Validation\\Exceptions')
-            );
-        }
-
-        //Sanitizer
-        $container['wwp.sanitizer'] = function () {
-            return Sanitizer::getInstance();
-        };
-
-        //Http Requester
-        $container['wwp.http.requester'] = function () {
-            return new WpRequester();
-        };
-
-        //Logs
-        $container['wwp.log.log'] = function () {
-            return new DirectOutputLogger();
-        };
-
-        /**
-         * Panels and MetaBoxes
-         */
-        $container['wwp.panel.Manager'] = function () {
-            return new PanelManager();
-        };
-        $container['wwp.panel.Panel']   = $container->factory(function () {
-            return new PostFieldPanel();
-        });
-        $container['wwp.panel.metabox'] = $container->factory(function () {
-            return new Metabox();
-        });
-
-        //Search
-        $container['wwp.search.engine']   = function () {
-            return new SearchEngine();
-        };
-        $container['wwp.search.renderer'] = function () {
-            return new SearchResultSetsRenderer();
-        };
-        $container['wwp.search.result']   = $container->factory(function () {
-            return new SearchResult();
-        });
-        $container['wwp.search.set']      = $container->factory(function () {
-            return new SearchResultSet();
-        });
-
-        //Views
-        $container['wwp.views.baseAdmin']    = function () {
-            return new AdminVue();
-        };
-        $container['wwp.views.listAdmin']    = function () {
-            return new ListAdminView();
-        };
-        $container['wwp.views.editAdmin']    = function () {
-            return new EditAdminView();
-        };
-        $container['wwp.views.optionsAdmin'] = function () {
-            return new OptionsAdminView();
-        };
-
-        do_action('wonderwp.loader.load');
+        do_action('wonderwp.loader.load', $container);
 
         /**
          * Make container available
