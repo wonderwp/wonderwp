@@ -20,6 +20,7 @@
     "wonderwp/api": "dev-feature/php_8",
     "wonderwp/asset": "dev-feature/php_8",
     "wonderwp/autoload-wwp": "dev-feature/php_8",
+    "wonderwp/block-type": "dev-feature/blocktype_definition",
     "wonderwp/cache": "dev-feature/php_8",
     "wonderwp/customposttype": "dev-feature/php_8",
     "wonderwp/custom-fields": "dev-feature/php8",
