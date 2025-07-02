@@ -20,6 +20,7 @@
     "wonderwp/api": "dev-feature/php_8",
     "wonderwp/asset": "dev-feature/php_8",
     "wonderwp/autoload-wwp": "dev-feature/php_8",
+    "wonderwp/block-bindings-source": "dev-feature/definition",
     "wonderwp/block-style": "dev-feature/definition",
     "wonderwp/block-type": "dev-feature/blocktype_definition",
     "wonderwp/block-variations": "dev-feature/definition",
