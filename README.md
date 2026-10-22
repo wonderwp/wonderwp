@@ -91,9 +91,14 @@ You can find much more detailled documentation within the documentation folder.
 
 ## Tests
 
-Command to launch the tests :
+Requirements: PHP >= 8.3 and Composer 2. `composer install` also pulls WordPress (`johnpbloch/wordpress`, require-dev) into `./wordpress`, which `tests/bootstrap.php` loads.
 
-`vendor/bin/phpunit tests/suites --bootstrap tests/bootstrap.php  --coverage-html tests/reports/coverage.html --whitelist src/WonderWp/Framework --log-junit tests/reports/phunit.xml`
+```
+composer install
+composer test
+```
+
+The suites to run are listed in `phpunit.xml.dist` (component tests that run against the framework bootstrap).
 
 ## Contributing
 
