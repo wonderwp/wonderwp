@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="vendor/phpunit/phpunit/phpunit.xsd"
+         bootstrap="tests/bootstrap.php"
+         colors="true"
+         failOnWarning="true">
+    <testsuites>
+        <!--
+            Component test suites that run against the framework bootstrap (WordPress from ./wordpress).
+            Not listed yet, because they need a fix in their own repository first:
+            - api, dependency-injection, form, hook, routing: written for PHPUnit 5 (setUp() without `: void`)
+            - mailing: the Mandrill client is not a dependency of wonderwp/mailing
+            - asset, service: standalone suites with their own phpunit.xml.dist and bootstrap
+        -->
+        <testsuite name="framework">
+            <directory>./vendor/wonderwp/functions/tests</directory>
+            <directory>./vendor/wonderwp/http-foundation/tests</directory>
+            <directory>./vendor/wonderwp/notification/tests</directory>
+            <directory>./vendor/wonderwp/sanitizer/tests</directory>
+        </testsuite>
+    </testsuites>
+    <coverage>
+        <include>
+            <directory suffix=".php">./src</directory>
+        </include>
+    </coverage>
+</phpunit>
