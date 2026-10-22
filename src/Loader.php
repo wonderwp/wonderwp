@@ -2,6 +2,7 @@
 
 namespace WonderWp\Bundle;
 
+use Composer\InstalledVersions;
 use WonderWp\Component\DependencyInjection\Container;
 use WonderWp\Component\DependencyInjection\SingletonInterface;
 use WonderWp\Component\DependencyInjection\SingletonTrait;
@@ -33,7 +34,9 @@ class Loader implements SingletonInterface
         /**
          * Define Paths
          */
-        $container['path_root']                           = ABSPATH . '../../'; // root
+        // Project root, where composer's vendor dir lives: ABSPATH . '../../' on Bedrock, ABSPATH on a classic install
+        $rootPackage                                      = class_exists(InstalledVersions::class) ? InstalledVersions::getRootPackage() : [];
+        $container['path_root']                           = !empty($rootPackage['install_path']) ? trailingslashit(realpath($rootPackage['install_path'])) : ABSPATH . '../../'; // root
         $container['path_framework_root']                 = __DIR__; // Framework root
         $container['wwp.path.defaultlanguagedir.plugins'] = trailingslashit(WP_LANG_DIR) . DIRECTORY_SEPARATOR . 'plugins' . DIRECTORY_SEPARATOR;
         $container['wwp.path.templates.frags']            = $container['path_root'] . '/vendor/wonderwp/template/src/frags/';
