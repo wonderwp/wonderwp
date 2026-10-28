@@ -2,7 +2,11 @@
   "name": "wonderwp/wonderwp",
   "description": "WonderWP Framework. A framework bringing modern and industrial development capabilities to WordPress",
   "type": "library",
-  "keywords": ["WonderWp","WordPress","Framework"],
+  "keywords": [
+    "WonderWp",
+    "WordPress",
+    "Framework"
+  ],
   "homepage": "http://wonderwp.net",
   "license": "MIT",
   "authors": [
@@ -16,7 +20,7 @@
     }
   ],
   "require": {
-    "php": ">=8.0",
+    "php": "^8.3",
     "wonderwp/api": "dev-feature/php_8",
     "wonderwp/asset": "dev-feature/php_8",
     "wonderwp/autoload-wwp": "dev-feature/php_8",
@@ -58,16 +62,20 @@
     }
   },
   "require-dev": {
-    "phpunit/phpunit": "^9.6",
-    "johnpbloch/wordpress": "^7.0"
+    "phpunit/phpunit": "^12.0"
   },
-  "config": {
-    "allow-plugins": {
-      "composer/installers": true,
-      "johnpbloch/wordpress-core-installer": true
+  "autoload-dev": {
+    "psr-4": {
+      "WonderWp\\Bundle\\Tests\\": "tests/"
     }
   },
+  "bin": [
+    "bin/run-all-unit.sh",
+    "bin/run-all-integration.sh"
+  ],
   "scripts": {
-    "test": "phpunit"
+    "test": "phpunit --configuration phpunit.xml.dist",
+    "test:all-unit": "bash bin/run-all-unit.sh",
+    "test:all-integration": "bash bin/run-all-integration.sh"
   }
 }

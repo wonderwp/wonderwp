@@ -1,4 +1,4 @@
+.phpunit.result.cache
+composer.lock
 vendor
 wordpress
-composer.lock
-.phpunit.result.cache

@@ -87,23 +87,34 @@ There's also a plugin generator to help you quick start your plugin development.
 
 ## Documentation
 
-You can find much more detailled documentation within the documentation folder.
+- Framework guides: see the [documentation folder](./docs) (growing)
+- **Testing strategy** for all `wonderwp/*` packages: [docs/testing.md](./docs/testing.md)
 
 ## Tests
 
-Requirements: PHP >= 8.3 and Composer 2. `composer install` also pulls WordPress (`johnpbloch/wordpress`, require-dev) into `./wordpress`, which `tests/bootstrap.php` loads.
+WonderWP packages use **Unit** tests (CI, stubs/spies, no WordPress database) and optional **Integration** smokes (run from any WordPress host via WP-CLI).
 
-```
-composer install
+```bash
+# Unit (one package / CI)
 composer test
+
+# Unit — every installed wonderwp/* package
+ddev exec bash vendor/wonderwp/wonderwp/bin/run-all-unit.sh
+
+# Integration example (one smoke)
+wp eval-file vendor/wonderwp/api/tests/Integration/smoke-endpoints.php
+
+# Integration — every smoke-*.php under vendor/wonderwp/*/tests/Integration/
+ddev exec bash vendor/wonderwp/wonderwp/bin/run-all-integration.sh
 ```
 
-The suites to run are listed in `phpunit.xml.dist` (component tests that run against the framework bootstrap).
+Full contract, checklist, runners, and rollout matrix: **[docs/testing.md](./docs/testing.md)**.
 
 ## Contributing
 
-- You can contribute to this project by forking this repository and proposing pull requests
-- We're looking for unit test contributors
+- Fork this repository and open pull requests
+- Prefer adding Unit tests in the package you change; see [docs/testing.md](./docs/testing.md) for the scaffold and CI expectations
+
 
 ## Changelog
 
