@@ -35,14 +35,22 @@ failed=0
 passed=0
 skipped=0
 
-echo "PHPUnit: $PHPUNIT_BIN"
-echo "Scanning: $VENDOR_WWP/*/phpunit.xml.dist"
-echo
+if [ -z "${NO_COLOR:-}" ]; then
+  C_RESET='\033[0m'; C_BOLD='\033[1m'; C_DIM='\033[2m'
+  C_GREEN='\033[32m'; C_RED='\033[31m'; C_CYAN='\033[36m'
+  C_BG_GREEN='\033[42m'; C_BG_RED='\033[41m'; C_WHITE='\033[37m'
+else
+  C_RESET=''; C_BOLD=''; C_DIM=''; C_GREEN=''; C_RED=''; C_CYAN=''
+  C_BG_GREEN=''; C_BG_RED=''; C_WHITE=''
+fi
+
+printf '%bPHPUnit:%b %s\n' "$C_DIM" "$C_RESET" "$PHPUNIT_BIN"
+printf '%bScanning:%b %s/*/phpunit.xml.dist\n\n' "$C_DIM" "$C_RESET" "$VENDOR_WWP"
 
 for config in "$VENDOR_WWP"/*/phpunit.xml.dist; do
   [ -f "$config" ] || continue
   pkg="$(basename "$(dirname "$config")")"
-  echo "==== Unit: wonderwp/$pkg ===="
+  printf '%b==== Unit: wonderwp/%s ====%b\n' "$C_CYAN$C_BOLD" "$pkg" "$C_RESET"
   set +e
   if [ -n "${FILTER:-}" ]; then
     "$PHP_BIN" "$PHPUNIT_BIN" --configuration "$config" --filter "$FILTER"
@@ -53,9 +61,10 @@ for config in "$VENDOR_WWP"/*/phpunit.xml.dist; do
   set -e
   if [ "$code" -eq 0 ]; then
     passed=$((passed + 1))
+    printf '%b%b PASS %b wonderwp/%s%b\n' "$C_BG_GREEN" "$C_WHITE$C_BOLD" "$C_RESET$C_GREEN" "$pkg" "$C_RESET"
   else
     failed=$((failed + 1))
-    echo "FAIL wonderwp/$pkg (exit $code)" >&2
+    printf '%b%b FAIL %b wonderwp/%s (exit %s)%b\n' "$C_BG_RED" "$C_WHITE$C_BOLD" "$C_RESET$C_RED" "$pkg" "$code" "$C_RESET" >&2
   fi
   echo
 done
@@ -63,17 +72,25 @@ done
 # Include the meta package itself when run from a checkout that has its own phpunit.xml.dist
 # and is not already covered as a sibling named "wonderwp" under vendor/wonderwp/.
 if [ -f "$ROOT/phpunit.xml.dist" ] && [ ! -f "$VENDOR_WWP/wonderwp/phpunit.xml.dist" ]; then
-  echo "==== Unit: wonderwp/wonderwp (meta checkout) ===="
+  printf '%b==== Unit: wonderwp/wonderwp (meta checkout) ====%b\n' "$C_CYAN$C_BOLD" "$C_RESET"
   set +e
   "$PHP_BIN" "$PHPUNIT_BIN" --configuration "$ROOT/phpunit.xml.dist"
   code=$?
   set -e
   if [ "$code" -eq 0 ]; then
     passed=$((passed + 1))
+    printf '%b%b PASS %b wonderwp/wonderwp%b\n' "$C_BG_GREEN" "$C_WHITE$C_BOLD" "$C_RESET$C_GREEN" "$C_RESET"
   else
     failed=$((failed + 1))
   fi
 fi
 
-echo "==== Unit summary: $passed passed, $failed failed, $skipped skipped ===="
-[ "$failed" -eq 0 ] || exit 1
+if [ "$failed" -eq 0 ]; then
+  printf '%b%b==== Unit summary: %s passed, %s failed, %s skipped ====%b\n' \
+    "$C_BG_GREEN" "$C_WHITE$C_BOLD" "$passed" "$failed" "$skipped" "$C_RESET"
+  exit 0
+fi
+
+printf '%b%b==== Unit summary: %s passed, %s failed, %s skipped ====%b\n' \
+  "$C_BG_RED" "$C_WHITE$C_BOLD" "$passed" "$failed" "$skipped" "$C_RESET" >&2
+exit 1
