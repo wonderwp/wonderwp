@@ -2,7 +2,11 @@
   "name": "wonderwp/wonderwp",
   "description": "WonderWP Framework. A framework bringing modern and industrial development capabilities to WordPress",
   "type": "library",
-  "keywords": ["WonderWp","WordPress","Framework"],
+  "keywords": [
+    "WonderWp",
+    "WordPress",
+    "Framework"
+  ],
   "homepage": "http://wonderwp.net",
   "license": "MIT",
   "authors": [
@@ -59,12 +63,6 @@
   },
   "require-dev": {
     "phpunit/phpunit": "^12.0"
-  },
-  "config": {
-    "allow-plugins": {
-      "composer/installers": true,
-      "johnpbloch/wordpress-core-installer": true
-    }
   },
   "autoload-dev": {
     "psr-4": {
