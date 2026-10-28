@@ -118,11 +118,11 @@ Aligned with the framework deps-max effort: ruptures first, then the rest.
 
 ### T2 — Aggregators (deps waves 4–5)
 
-| Package | Target |
-|---------|--------|
-| `search` | Minimal Unit + CI |
-| `plugin-skeleton` | Minimal Unit + CI |
-| `wonderwp` (meta) | Modernise legacy tests → Unit + CI |
+| Package | Target | Status |
+|---------|--------|--------|
+| `search` | Minimal Unit + CI | Done |
+| `plugin-skeleton` | Minimal Unit + CI | Done |
+| `wonderwp` (meta) | Modernise legacy tests → Unit + CI | Done (Unit scaffold; legacy bootstrap retained) |
 
 ### T3 — Legacy tests without scaffold
 
@@ -130,21 +130,46 @@ Normalise into `tests/Unit/`, add `phpunit.xml.dist`, `composer test`, CI:
 
 `http-foundation` → `form` → `sanitizer` → `functions` → `dependency-injection` → `notification` → `mailing`
 
+| Package | Status |
+|---------|--------|
+| `http-foundation` | Done |
+| `sanitizer` | Done |
+| `form` | Done |
+| `functions` | Done |
+| `dependency-injection` | Done |
+| `notification` | Done |
+| `mailing` | Done |
+
 ### T4 — No tests yet
 
 Minimal Unit (at least one smoke on a public entry point) + CI:
 
 `http` → `cache` → `panel` → `taxonomy` → `customposttype` → `custom-fields` → `response` → `filter` → `logging` → `shortcode` → `task` → `template` → `block-bindings-source` / `block-style` / `block-type` / `block-variations`
 
+| Package | Status |
+|---------|--------|
+| `http` | Done |
+| `cache` | Done |
+| `panel` | Done |
+| `taxonomy` | Done (prior wave) |
+| `customposttype` | Done (prior wave) |
+| `custom-fields` | Done (prior wave) |
+| `response` | Done |
+| `filter` | Done |
+| `logging` | Done |
+| `shortcode` | Done |
+| `task` | Done |
+| `template` | Done |
+| `block-bindings-source` | Done |
+| `block-style` / `block-type` / `block-variations` | Pending (optional smoke) |
+
 ## Coverage matrix (snapshot)
 
 | Maturity | Packages |
 |----------|----------|
 | **Reference** (Unit + Integration + CI) | `api`, `repository`, `asset` |
-| **Unit + CI** (Integration optional / N/A) | `service`, `hook`, `media`, `routing` |
-| **Partial** | `wonderwp` (legacy tests; docs Done in T0) |
-| **Legacy tests, no scaffold** | `form`, `functions`, `dependency-injection`, `http-foundation`, `notification`, `mailing`, `sanitizer` |
-| **No tests** | `cache`, `panel`, `http`, `response`, `filter`, `logging`, `shortcode`, `task`, `template`, `taxonomy`, `customposttype`, `custom-fields`, `search`, `plugin-skeleton`, `block-*` |
+| **Unit + CI** (Integration optional / N/A) | `service`, `hook`, `media`, `routing`, `cache`, `search`, `plugin-skeleton`, `sanitizer`, `http-foundation`, `form`, `functions`, `dependency-injection`, `notification`, `mailing`, `http`, `panel`, `response`, `filter`, `logging`, `shortcode`, `task`, `template`, `taxonomy`, `customposttype`, `custom-fields`, `block-bindings-source`, `wonderwp` (meta Unit + legacy bootstrap) |
+| **Partial / pending** | `block-style`, `block-type`, `block-variations` (no Unit scaffold yet) |
 
 Update this matrix when a package graduates (PR `test:` or deps PR).
 

@@ -67,7 +67,12 @@
       "johnpbloch/wordpress-core-installer": true
     }
   },
+  "autoload-dev": {
+    "psr-4": {
+      "WonderWp\\Bundle\\Tests\\": "tests/"
+    }
+  },
   "scripts": {
-    "test": "phpunit"
+    "test": "phpunit --configuration phpunit.xml.dist"
   }
 }
