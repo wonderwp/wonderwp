@@ -39,7 +39,7 @@ flowchart LR
 
 ## Commands
 
-### Unit (CI)
+### Unit (CI) — one package
 
 ```bash
 # From the package root (after composer install), or via a host autoload:
@@ -50,7 +50,7 @@ vendor/bin/phpunit --configuration phpunit.xml.dist
 
 `phpunit.xml.dist` must point at **`tests/Unit` only**.
 
-### Integration (any WordPress host)
+### Integration — one package (any WordPress host)
 
 ```bash
 # From the WordPress project root (Bedrock, classic, DDEV, …):
@@ -66,6 +66,41 @@ Rules for Integration scripts:
 2. Resolve the **host** Composer autoload (`vendor/autoload.php`), not only a package-local vendor tree.
 3. Do not hardcode a host project name or absolute paths.
 4. Fail clearly if the package is not autoloadable.
+
+### All packages (meta runners)
+
+Shipped in this meta-package under [`bin/`](../bin/). They discover every installed sibling `wonderwp/*` under `vendor/wonderwp/`.
+
+**Unit — every package with `phpunit.xml.dist`:**
+
+```bash
+# From the host project (DDEV recommended when host PHP < platform req):
+ddev exec bash vendor/wonderwp/wonderwp/bin/run-all-unit.sh
+
+# Or via Composer when developing the meta package itself:
+composer test:all-unit
+```
+
+**Integration — every `tests/Integration/smoke-*.php`:**
+
+```bash
+# Inside DDEV (wp available):
+ddev exec bash vendor/wonderwp/wonderwp/bin/run-all-integration.sh
+
+# From the host with DDEV WP-CLI:
+WP_BIN="ddev wp" bash vendor/wonderwp/wonderwp/bin/run-all-integration.sh
+
+# Limit to one package:
+ONLY=repository WP_BIN="ddev wp" bash vendor/wonderwp/wonderwp/bin/run-all-integration.sh
+```
+
+| Env | Role |
+|-----|------|
+| `PHPUNIT` | Override phpunit binary (Unit runner) |
+| `PHP_BIN` | Override PHP binary (Unit runner) |
+| `FILTER` | PHPUnit `--filter` applied to each package (Unit) |
+| `WP_BIN` | WP-CLI invocation (`wp`, `ddev wp`, …) |
+| `ONLY` | Package short name filter (Integration) |
 
 ## Package checklist (scaffold / migration)
 

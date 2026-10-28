@@ -72,7 +72,13 @@
       "WonderWp\\Bundle\\Tests\\": "tests/"
     }
   },
+  "bin": [
+    "bin/run-all-unit.sh",
+    "bin/run-all-integration.sh"
+  ],
   "scripts": {
-    "test": "phpunit --configuration phpunit.xml.dist"
+    "test": "phpunit --configuration phpunit.xml.dist",
+    "test:all-unit": "bash bin/run-all-unit.sh",
+    "test:all-integration": "bash bin/run-all-integration.sh"
   }
 }

@@ -95,11 +95,27 @@ There's also a plugin generator to help you quick start your plugin development.
 WonderWP packages use **Unit** tests (CI, stubs/spies, no WordPress database) and optional **Integration** smokes (run from any WordPress host via WP-CLI).
 
 ```bash
-# Unit (package CI)
+# Unit (one package / CI)
 composer test
 
-# Integration example (from a WordPress project that requires the package)
+# Unit — every installed wonderwp/* package
+ddev exec bash vendor/wonderwp/wonderwp/bin/run-all-unit.sh
+
+# Integration example (one smoke)
 wp eval-file vendor/wonderwp/api/tests/Integration/smoke-endpoints.php
+
+# Integration — every smoke-*.php under vendor/wonderwp/*/tests/Integration/
+ddev exec bash vendor/wonderwp/wonderwp/bin/run-all-integration.sh
 ```
 
-Full contract, checklist, and rollout matrix: **[docs/testing.md](./docs/testing.md)**.
+Full contract, checklist, runners, and rollout matrix: **[docs/testing.md](./docs/testing.md)**.
+
+## Contributing
+
+- Fork this repository and open pull requests
+- Prefer adding Unit tests in the package you change; see [docs/testing.md](./docs/testing.md) for the scaffold and CI expectations
+
+
+## Changelog
+
+You can find the changelog under [changelog.md](./changelog.md)
