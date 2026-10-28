@@ -70,14 +70,13 @@ passed=0
 skipped=0
 
 printf '%bWP-CLI:%b %s\n' "$C_DIM" "$C_RESET" "$WP_BIN"
-printf '%bScanning:%b %s/*/tests/Integration/smoke-*.php\n\n' "$C_DIM" "$C_RESET" "$VENDOR_WWP"
+printf '%bScanning:%b %s/*/tests/Integration/smoke-*.php (no nested vendor trees)\n\n' "$C_DIM" "$C_RESET" "$VENDOR_WWP"
 
-# shellcheck disable=SC2044
-for smoke in $(find "$VENDOR_WWP" -path '*/tests/Integration/smoke-*.php' 2>/dev/null | sort); do
-  pkg="$(echo "$smoke" | sed -n 's|.*/wonderwp/\([^/]*\)/tests/Integration/.*|\1|p')"
-  if [ -z "$pkg" ]; then
-    pkg="$(basename "$(dirname "$(dirname "$(dirname "$smoke")")")")"
-  fi
+# Only direct package children — never recurse into vendor/wonderwp/*/vendor/...
+# shellcheck disable=SC2231
+for smoke in "$VENDOR_WWP"/*/tests/Integration/smoke-*.php; do
+  [ -f "$smoke" ] || continue
+  pkg="$(basename "$(dirname "$(dirname "$(dirname "$smoke")")")")"
 
   if [ -n "${ONLY:-}" ] && [ "$pkg" != "$ONLY" ]; then
     skipped=$((skipped + 1))

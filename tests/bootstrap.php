@@ -3,8 +3,8 @@
 declare(strict_types=1);
 
 $candidates = [
-    dirname(__DIR__) . '/vendor/autoload.php',
     dirname(__DIR__, 3) . '/autoload.php',
+    dirname(__DIR__) . '/vendor/autoload.php',
 ];
 
 $autoload = null;
