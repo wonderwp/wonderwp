@@ -167,7 +167,7 @@ Minimal Unit (at least one smoke on a public entry point) + CI:
 
 | Maturity | Packages |
 |----------|----------|
-| **Reference** (Unit + Integration + CI) | `api`, `repository`, `asset` |
+| **Reference** (Unit + Integration + CI) | `api`, `repository` (Taxonomy + Post/User), `asset`, `customposttype`, `taxonomy` |
 | **Unit + CI** (Integration optional / N/A) | `service`, `hook`, `media`, `routing`, `cache`, `search`, `plugin-skeleton`, `sanitizer`, `http-foundation`, `form`, `functions`, `dependency-injection`, `notification`, `mailing`, `http`, `panel`, `response`, `filter`, `logging`, `shortcode`, `task`, `template`, `taxonomy`, `customposttype`, `custom-fields`, `block-bindings-source`, `wonderwp` (meta Unit + legacy bootstrap) |
 | **Partial / pending** | `block-style`, `block-type`, `block-variations` (no Unit scaffold yet) |
 
