@@ -101,6 +101,8 @@ ONLY=repository WP_BIN="ddev wp" bash vendor/wonderwp/wonderwp/bin/run-all-integ
 | `FILTER` | PHPUnit `--filter` applied to each package (Unit) |
 | `WP_BIN` | WP-CLI invocation (`wp`, `ddev wp`, …) |
 | `ONLY` | Package short name filter (Integration) |
+| `NO_COLOR` | Disable ANSI colors |
+| `FORCE_COLOR` | Force colors even when stdout is not a TTY |
 
 ## Package checklist (scaffold / migration)
 
